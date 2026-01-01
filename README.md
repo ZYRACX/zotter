@@ -1,3 +1,4 @@
+
 # Zotter 📝
 
 **Zotter** is a lightning-fast, terminal-based note-taking tool built for developers who live in the command line. It allows you to capture thoughts, categorize ideas, and search your history without ever leaving your terminal.
@@ -6,10 +7,11 @@ Built with **Python**, **Typer**, and **Rich**.
 
 ## ✨ Features
 
-* **Add Notes:** Quickly save titles and descriptions with categories.
-* **Pretty Listing:** View all notes in a beautifully formatted table.
-* **Read Mode:** View note content in a clean panel.
+* **Capture Ideas:** Quickly save titles and descriptions with categories.
+* **Pretty Timeline:** View all notes in a beautifully formatted table.
+* **Peek Mode:** Quickly view note content in a clean panel.
 * **Search:** Instant fuzzy search across titles and content.
+* **Safety Net:** Deleted notes go to a Trash bin and can be recovered.
 * **Persistent Storage:** Data is saved locally in a hidden JSON file (`~/.zotter.json`).
 
 ---
@@ -17,42 +19,57 @@ Built with **Python**, **Typer**, and **Rich**.
 ## 🚀 Installation
 
 ### Prerequisites
-* Python 3.7+
-* Git
+* **Python 3.7+** (Required)
+* **Git** (Optional, for easier updates)
 
-### 1. Clone the repository
-```bash
-git clone [https://github.com/YOUR_USERNAME/zotter.git](https://github.com/YOUR_USERNAME/zotter.git)
-cd zotter
+### Option A: Using Git (Recommended)
+This is the best way to keep the app updated.
 
-```
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/starzooka/zotter.git
+    cd zotter
+    ```
 
-### 2. Create a Virtual Environment
+2.  **Create a Virtual Environment**
+    - **Windows:** `python -m venv venv` then `.\venv\Scripts\activate`
+    - **Mac/Linux:** `python3 -m venv venv` then `source venv/bin/activate`
 
-**Windows:**
+3.  **Install the App**
+    ```bash
+    pip install --editable .
+    ```
 
-```powershell
-python -m venv venv
-.\venv\Scripts\activate
+---
 
-```
+### Option B: Without Git (Manual Download)
 
-**Mac/Linux:**
+If you don't have Git installed, follow these steps:
 
-```bash
-python3 -m venv venv
-source venv/bin/activate
+1. **Download the Code**
+    * Click the green **Code** button at the top of this page.
+    * Select **Download ZIP**. 
+    * Extract the ZIP folder to your computer.
 
-```
+2. **Open Terminal**
+    * Open your terminal or command prompt and navigate into the extracted folder.
 
-### 3. Install the App
+3. **Install the App**
 
-```bash
-pip install --editable .
+    **Windows:**
+    ```powershell
+    python -m venv venv
+    .\venv\Scripts\activate
+    pip install --editable .
+    ```
 
-```
-
-### 4. Verify Installation
+    **Mac/Linux:**
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install --editable .
+    ```
+4. **Verify Installation**
 
 ```bash
 zotter --help
@@ -65,7 +82,7 @@ zotter --help
 
 Here is the complete command reference to master your workflow.
 
-### ➕ Add a Note
+### ➕ Capture a Note
 
 Create a new note. If you don't provide a category, it defaults to "General".
 
@@ -74,21 +91,21 @@ zotter add "Project Alpha" "Finish the API documentation by Friday" --category W
 
 ```
 
-### 📋 List All Notes
+### 📋 List Timeline
 
-See a summary table of all your notes with their Index IDs.
+See a summary table of all your active notes.
 
 ```bash
 zotter list
 
 ```
 
-### 👁️ View a Note
+### 👁️ Peek at a Note
 
-Read the full content of a note using its Index ID (find the ID using the `list` command).
+Take a quick look at the full content of a note using its ID.
 
 ```bash
-zotter view 1
+zotter peek 1
 
 ```
 
@@ -101,12 +118,52 @@ zotter search "API"
 
 ```
 
-### 🗑️ Delete
+### 🗑️ Discard (Move to Trash)
 
-Remove a note permanently by its ID.
+Move a note to the Trash bin. It is **not** permanently deleted yet.
 
 ```bash
 zotter delete 1
+
+```
+
+---
+
+## ♻️ Trash Management
+
+### View Trash
+
+See notes you have discarded.
+
+```bash
+zotter trash
+
+```
+
+### Recover
+
+Restore a note from the Trash back to your main timeline.
+
+```bash
+zotter recover 1
+
+```
+
+### Burn
+
+Permanently destroy a specific note from the Trash. **This cannot be undone.**
+
+```bash
+zotter burn 1
+
+```
+
+### Incinerate
+
+Permanently destroy **all** items in the Trash. **Burns all the items present in Trash.**
+
+```bash
+zotter incinerate
 
 ```
 
@@ -122,7 +179,7 @@ zotter delete 1
 
 **STARZOOKA**
 
-* GitHub: https://github.com/starzooka
+* GitHub: [https://github.com/starzooka](https://github.com/starzooka)
 
 ---
 
