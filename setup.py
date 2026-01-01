@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='dot jotter',
+    name='zotter',              # <--- Updated Name
     version='0.1',
     packages=find_packages(),
     install_requires=[
@@ -10,6 +10,6 @@ setup(
     ],
     entry_points='''
         [console_scripts]
-        notes=mynotes_cli.main:app
+        zotter=zotter.main:app 
     ''',
 )

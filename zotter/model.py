@@ -3,7 +3,7 @@ from pathlib import Path
 from datetime import datetime
 
 # Define where the notes will be saved
-NOTES_FILE = Path.home() / ".mynotes.json"
+NOTES_FILE = Path.home() / ".zotter.json"
 
 class Note:
     def __init__(self, title, content, category="General"):
