@@ -1,0 +1,10 @@
+setup.py
+mynotes.egg-info/PKG-INFO
+mynotes.egg-info/SOURCES.txt
+mynotes.egg-info/dependency_links.txt
+mynotes.egg-info/entry_points.txt
+mynotes.egg-info/requires.txt
+mynotes.egg-info/top_level.txt
+mynotes_cli/__init__.py
+mynotes_cli/main.py
+mynotes_cli/model.py
