@@ -18,7 +18,19 @@ console = Console()
 def add(title: str, content: str, category: str = "General"):
     """
     [bold]Capture[/bold] a new thought into your notebook.
+
+    Format:
+      zotter add TITLE CONTENT [--category CATEGORY]
+
+    Examples:
+      zotter add "Idea" "Build a CLI help system"
+      zotter add "Meeting" "Discussed Q1 roadmap" --category Work
+
+    Notes:
+      • Use quotes for multi-word titles or content
+      • Categories help organize notes
     """
+
     notes = load_notes()
     new_note = Note(title, content, category)
     notes.append(new_note.__dict__) 
@@ -28,8 +40,19 @@ def add(title: str, content: str, category: str = "General"):
 @app.command(rich_help_panel="Active Notes")
 def list():
     """
-    [bold]View[/bold] your timeline of active notes.
+    [bold]View[/bold] all active notes in a structured table.
+
+    Format:
+      zotter list
+
+    Example:
+      zotter list
+
+    Notes:
+      • Notes are shown in the order they were added
+      • Use the ID column for other commands like peek or delete
     """
+
     notes = load_notes()
     if not notes:
         console.print("[dim]Your notebook is empty.[/dim]")
@@ -50,7 +73,17 @@ def list():
 def peek(index: int):
     """
     [bold]Read[/bold] the full content of a specific note.
+
+    Format:
+      zotter peek INDEX
+
+    Example:
+      zotter peek 2
+
+    Notes:
+      • Index refers to the ID shown in `zotter list`
     """
+
     notes = load_notes()
     if 0 <= index - 1 < len(notes):
         note = notes[index - 1]
@@ -62,8 +95,20 @@ def peek(index: int):
 @app.command(rich_help_panel="Active Notes")
 def search(query: str):
     """
-    [bold]Hunt[/bold] for notes by keyword or content.
+    [bold]Search[/bold] notes by keyword in title or content.
+
+    Format:
+      zotter search QUERY
+
+    Examples:
+      zotter search idea
+      zotter search meeting
+
+    Notes:
+      • Search is case-insensitive
+      • Matches both title and content
     """
+
     notes = load_notes()
     results = []
     for note in notes:
@@ -88,8 +133,19 @@ def search(query: str):
 @app.command(rich_help_panel="Active Notes")
 def delete(index: int):
     """
-    [bold]Discard[/bold] a note to the Trash (recoverable).
+    [bold]Discard[/bold] a note by moving it to the Trash.
+
+    Format:
+      zotter delete INDEX
+
+    Example:
+      zotter delete 3
+
+    Notes:
+      • Deleted notes can be recovered later
+      • Use `zotter trash` to view discarded notes
     """
+
     notes = load_notes()
     trash = load_trash()
     
@@ -109,8 +165,19 @@ def delete(index: int):
 @app.command(rich_help_panel="Trash Management")
 def trash():
     """
-    [bold]Inspect[/bold] the Recycle Bin for discarded items.
+    [bold]Inspect[/bold] notes currently stored in the Trash.
+
+    Format:
+      zotter trash
+
+    Example:
+      zotter trash
+
+    Notes:
+      • Items here are not permanently deleted
+      • You can recover or destroy them
     """
+
     trash_items = load_trash()
 
     if not trash_items:
@@ -130,8 +197,18 @@ def trash():
 @app.command(rich_help_panel="Trash Management")
 def recover(index: int):
     """
-    [bold]Restore[/bold] a discarded note to the timeline.
+    [bold]Restore[/bold] a discarded note back to active notes.
+
+    Format:
+      zotter recover INDEX
+
+    Example:
+      zotter recover 1
+
+    Notes:
+      • Index refers to the ID shown in `zotter trash`
     """
+
     trash = load_trash()
     notes = load_notes()
     
@@ -149,8 +226,18 @@ def recover(index: int):
 @app.command(rich_help_panel="Trash Management")
 def burn(index: int):
     """
-    [bold]Destroy[/bold] a single note from Trash permanently.
+    [bold]Permanently destroy[/bold] a single note from the Trash.
+
+    Format:
+      zotter burn INDEX
+
+    Example:
+      zotter burn 2
+
+    Warning:
+      • This action cannot be undone
     """
+
     trash = load_trash()
     real_index = index - 1
 
@@ -164,8 +251,19 @@ def burn(index: int):
 @app.command(rich_help_panel="Trash Management")
 def incinerate():
     """
-    [bold]Obliterate[/bold] all items in the Trash.
+    [bold]Obliterate[/bold] all notes currently in the Trash.
+
+    Format:
+      zotter incinerate
+
+    Example:
+      zotter incinerate
+
+    Warning:
+      • This permanently deletes ALL trashed notes
+      • You will be asked for confirmation
     """
+
     trash = load_trash()
     
     if not trash:
