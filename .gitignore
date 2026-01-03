@@ -3,3 +3,4 @@ zotter.egg-info/
 __pycache__/
 .zotter.json
 *.egg-info/
+build/
