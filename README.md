@@ -94,8 +94,8 @@ pip install --editable .
 
 1. **Install pipx** (if you haven't already):
 ```bash
-python -m pip install pipx
-python -m pipx ensurepath
+pip install pipx
+pipx ensurepath
 
 ```
 
